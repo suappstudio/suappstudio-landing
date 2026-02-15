@@ -1,166 +1,995 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="SuappStudio: Unlocking the potential of AI for businesses. Expert solutions in Artificial Intelligence tailored for your needs.">
-    <title>SuappStudio - AI Solutions</title>
+    <title>SuappStudio | Prodotti Digitali per Entertainment ed Experiences</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Syne:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        :root {
+            --primary: #06b6d4;
+            --accent: #f97316;
+            --secondary: #14b8a6;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --gray: #64748b;
+        }
+
+        * {
             margin: 0;
             padding: 0;
-            color: #333;
+            box-sizing: border-box;
         }
 
-        header {
-            background: linear-gradient(90deg, #4b6cb7, #182848);
-            color: white;
-            padding: 20px;
-            text-align: center;
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--dark);
+            color: var(--light);
+            overflow-x: hidden;
+            line-height: 1.6;
         }
 
-        header h1 {
-            margin: 0;
-            font-size: 2.5em;
-        }
-
-        header p {
-            margin: 10px 0 0;
-            font-size: 1.2em;
-        }
-
+        /* Navigation */
         nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
             display: flex;
-            justify-content: center;
-            background-color: #fff;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        nav a {
-            text-decoration: none;
-            color: #333;
-            margin: 0 15px;
-            padding: 15px 0;
-            font-weight: bold;
-        }
-
-        nav a:hover {
-            color: #4b6cb7;
-        }
-
-        .hero {
-            display: flex;
-            flex-direction: column;
+            justify-content: space-between;
             align-items: center;
-            text-align: center;
-            padding: 50px 20px;
-            background-color: #f4f6f9;
+            z-index: 1000;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        .hero h2 {
-            font-size: 2em;
-            margin-bottom: 20px;
+        .logo {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--light);
+            transition: all 0.3s;
+            border-radius: 2px;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 2rem 5%;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.15;
+            z-index: 0;
+        }
+
+        .gradient-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .orb-1 {
+            width: 500px;
+            height: 500px;
+            background: var(--primary);
+            top: 10%;
+            right: 10%;
+            animation-delay: 0s;
+        }
+
+        .orb-2 {
+            width: 400px;
+            height: 400px;
+            background: var(--accent);
+            bottom: 10%;
+            left: 10%;
+            animation-delay: 2s;
+        }
+
+        .orb-3 {
+            width: 350px;
+            height: 350px;
+            background: var(--secondary);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) scale(1);
+            }
+            50% {
+                transform: translateY(-30px) scale(1.1);
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #fff, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .hero p {
-            font-size: 1.2em;
-            max-width: 600px;
-            margin-bottom: 30px;
+            font-size: clamp(1.2rem, 2vw, 1.5rem);
+            color: var(--gray);
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 1s ease-out 0.2s backwards;
         }
 
-        .hero button {
-            background: #4b6cb7;
-            color: white;
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 0.4s backwards;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
             border: none;
-            padding: 10px 20px;
-            font-size: 1em;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
             cursor: pointer;
-            border-radius: 5px;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            font-family: 'Outfit', sans-serif;
         }
 
-        .hero button:hover {
-            background: #182848;
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            box-shadow: 0 10px 30px rgba(249, 115, 22, 0.3);
         }
 
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(249, 115, 22, 0.5);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--light);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Services Section */
         .services {
+            padding: 8rem 5%;
+            position: relative;
+        }
+
+        .section-title {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--gray);
+            font-size: 1.2rem;
+            margin-bottom: 4rem;
+        }
+
+        .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            padding: 50px 20px;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        .service {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        .service-card {
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.1), rgba(249, 115, 22, 0.1));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .service-card:hover::before {
+            opacity: 0.1;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+            box-shadow: 0 20px 60px rgba(249, 115, 22, 0.3);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-card h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-card p {
+            color: var(--gray);
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Portfolio Section */
+        .portfolio {
+            padding: 8rem 5%;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .portfolio-item {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            height: 350px;
+            cursor: pointer;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.9), rgba(249, 115, 22, 0.9));
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        .portfolio-overlay h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .portfolio-overlay p {
+            text-align: center;
+            line-height: 1.8;
+        }
+
+        /* About Section */
+        .about {
+            padding: 8rem 5%;
+        }
+
+        .about-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text p {
+            color: var(--gray);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.1), rgba(249, 115, 22, 0.1));
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .stat-number {
+            font-family: 'Syne', sans-serif;
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            color: var(--gray);
+            font-size: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .about-visual {
+            position: relative;
+            height: 500px;
+        }
+
+        .floating-card {
+            position: absolute;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: floatCard 6s ease-in-out infinite;
+        }
+
+        .card-1 {
+            width: 250px;
+            height: 150px;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .card-2 {
+            width: 200px;
+            height: 200px;
+            bottom: 20%;
+            right: 10%;
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            animation-delay: 2s;
+        }
+
+        .card-3 {
+            width: 180px;
+            height: 120px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, var(--accent), var(--secondary));
+            animation-delay: 4s;
+        }
+
+        @keyframes floatCard {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(3deg);
+            }
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 8rem 5%;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .contact-content {
+            max-width: 800px;
+            margin: 0 auto;
             text-align: center;
         }
 
-        .service h3 {
-            font-size: 1.5em;
-            margin-bottom: 15px;
+        .contact-content h2 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
         }
 
-        .service p {
-            font-size: 1em;
-            color: #666;
+        .contact-content p {
+            color: var(--gray);
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
         }
 
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .contact-item span:first-child {
+            font-size: 2rem;
+        }
+
+        .contact-item a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .contact-item a:hover {
+            color: var(--accent);
+        }
+
+        /* Footer */
         footer {
-            background: #182848;
-            color: white;
+            padding: 3rem 5%;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
             text-align: center;
-            padding: 20px;
-            margin-top: 50px;
+            color: var(--gray);
         }
 
-        footer p {
-            margin: 5px 0;
-            font-size: 0.9em;
+        footer .logo {
+            margin-bottom: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .social-links a {
+            color: var(--light);
+            font-size: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background: rgba(15, 23, 42, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 3rem;
+                transition: right 0.4s ease;
+                padding: 2rem;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links a {
+                font-size: 1.5rem;
+            }
+
+            nav {
+                padding: 1rem 5%;
+            }
+
+            .logo {
+                font-size: 1.4rem;
+            }
+
+            .hero {
+                min-height: 100vh;
+                padding: 6rem 5% 2rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .section-subtitle {
+                font-size: 1rem;
+                padding: 0 1rem;
+            }
+
+            .services {
+                padding: 4rem 5%;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .service-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .portfolio {
+                padding: 4rem 5%;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about {
+                padding: 4rem 5%;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .about-visual {
+                display: none;
+            }
+
+            .contact {
+                padding: 4rem 5%;
+            }
+
+            .contact-content h2 {
+                font-size: 2rem;
+            }
+
+            .contact-content p {
+                font-size: 1rem;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            .orb-1, .orb-2, .orb-3 {
+                width: 300px;
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .service-icon {
+                font-size: 2.5rem;
+            }
+
+            .service-card h3 {
+                font-size: 1.5rem;
+            }
+
+            .portfolio-item {
+                height: 300px;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
         }
     </style>
 </head>
-
 <body>
-<header>
-    <h1>SuappStudio</h1>
-    <p>Empowering your business with cutting-edge AI solutions</p>
-</header>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">SuappStudio</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#servizi">Servizi</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#chi-siamo">Chi Siamo</a></li>
+            <li><a href="#contatti">Contatti</a></li>
+        </ul>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
 
-<nav>
-    <a href="#services">Services</a>
-    <a href="#about">About Us</a>
-    <a href="#contact">Contact</a>
-</nav>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-bg">
+            <div class="gradient-orb orb-1"></div>
+            <div class="gradient-orb orb-2"></div>
+            <div class="gradient-orb orb-3"></div>
+        </div>
+        <div class="hero-content">
+            <h1>
+                Creiamo <span class="gradient-text">Esperienze Digitali</span> Indimenticabili
+            </h1>
+            <p>
+                Prodotti digitali innovativi per Entertainment ed Experiences. 
+                Trasformiamo le tue idee in realtà coinvolgenti.
+            </p>
+            <div class="cta-buttons">
+                <a href="#contatti" class="btn btn-primary">Inizia il Tuo Progetto</a>
+                <a href="#portfolio" class="btn btn-secondary">Scopri i Nostri Lavori</a>
+            </div>
+        </div>
+    </section>
 
-<section class="hero">
-    <h2>Transform Your Business with Artificial Intelligence</h2>
-    <p>At SuappStudio, we deliver AI-powered solutions tailored to your unique challenges, driving growth and innovation in every aspect of your business.</p>
-    <button>Get Started Today</button>
-</section>
+    <!-- Services Section -->
+    <section class="services" id="servizi">
+        <h2 class="section-title">I Nostri Servizi</h2>
+        <p class="section-subtitle">Soluzioni digitali complete per il tuo business</p>
+        
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🎮</div>
+                <h3>Entertainment Apps</h3>
+                <p>Sviluppiamo applicazioni mobile e web per l'intrattenimento, dai giochi interattivi alle piattaforme di streaming, con tecnologie all'avanguardia.</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">🎬</div>
+                <h3>Contenuti Multimediali</h3>
+                <p>Produciamo contenuti digitali coinvolgenti: video interattivi, esperienze VR/AR, e soluzioni multimediali personalizzate per ogni esigenza.</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">🗺️</div>
+                <h3>Experiences</h3>
+                <p>Piattaforme digitali innovative per il settore turistico: app di viaggio, guide interattive, sistemi di prenotazione e tour virtuali.</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">📱</div>
+                <h3>App Mobile Native</h3>
+                <p>Sviluppo di applicazioni iOS e Android con performance elevate, design intuitivo e funzionalità avanzate per ogni tipo di progetto.</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">🌐</div>
+                <h3>Web Experience</h3>
+                <p>Realizziamo siti web e applicazioni web progressive con design moderno, UX ottimizzata e tecnologie responsive per ogni dispositivo.</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">🎨</div>
+                <h3>UI/UX Design</h3>
+                <p>Design di interfacce utente belle e funzionali, con particolare attenzione all'esperienza utente e alle ultime tendenze del design digitale.</p>
+            </div>
+        </div>
+    </section>
 
-<section id="services" class="services">
-    <div class="service">
-        <h3>AI Consulting</h3>
-        <p>We help you identify opportunities to integrate AI into your business processes for maximum efficiency and innovation.</p>
-    </div>
-    <div class="service">
-        <h3>Custom AI Development</h3>
-        <p>Our team builds tailored AI solutions that address your specific needs, from predictive analytics to automation.</p>
-    </div>
-    <div class="service">
-        <h3>Data-Driven Insights</h3>
-        <p>Unlock the power of your data with advanced AI-driven analytics and actionable insights.</p>
-    </div>
-</section>
+    <!-- Portfolio Section -->
+    <section class="portfolio" id="portfolio">
+        <h2 class="section-title">I Nostri Progetti</h2>
+        <p class="section-subtitle">Esperienze digitali che hanno fatto la differenza</p>
+        
+        <div class="portfolio-grid">
+            <div class="portfolio-item">
+                <div class="portfolio-overlay">
+                    <h3>TravelExplorer</h3>
+                    <p>App mobile per la scoperta di destinazioni turistiche con realtà aumentata e guide interattive personalizzate.</p>
+                </div>
+            </div>
+            
+            <div class="portfolio-item">
+                <div class="portfolio-overlay">
+                    <h3>EventLive</h3>
+                    <p>Piattaforma di streaming per eventi live con funzionalità interattive e coinvolgimento del pubblico in tempo reale.</p>
+                </div>
+            </div>
+            
+            <div class="portfolio-item">
+                <div class="portfolio-overlay">
+                    <h3>CultureVR</h3>
+                    <p>Esperienza di realtà virtuale per la visita di musei e siti culturali da qualsiasi parte del mondo.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<footer>
-    <p>&copy; 2025 SuappStudio. All rights reserved.</p>
-    <p>Email: info@suappstudio.com | Phone: +39 3200379509</p>
-</footer>
-</body>
+    <!-- About Section -->
+    <section class="about" id="chi-siamo">
+        <div class="about-content">
+            <div class="about-text">
+                <h2>Chi Siamo</h2>
+                <p>
+                    SuappStudio è un team di creativi e tecnologi appassionati che crea prodotti digitali 
+                    per Entertainment ed Experiences.
+                </p>
+                <p>
+                    Con anni di esperienza nello sviluppo di soluzioni innovative, combiniamo design 
+                    eccezionale, tecnologia all'avanguardia e creatività per dare vita a esperienze 
+                    digitali che coinvolgono, emozionano e ispirano.
+                </p>
+                
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">Progetti Completati</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Clienti Soddisfatti</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">5+</div>
+                        <div class="stat-label">Anni di Esperienza</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Supporto Dedicato</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="about-visual">
+                <div class="floating-card card-1"></div>
+                <div class="floating-card card-2"></div>
+                <div class="floating-card card-3"></div>
+            </div>
+        </div>
+    </section>
 
-</html>
+    <!-- Contact Section -->
+    <section class="contact" id="contatti">
+        <div class="contact-content">
+            <h2>Iniziamo Insieme</h2>
+            <p>Hai un progetto in mente? Parliamone! Siamo pronti a trasformare la tua visione in realtà.</p>
+            
+            <div class="cta-buttons">
+                <a href="/cdn-cgi/l/email-protection#fe97909891be8d8b9f8e8e8d8a8b9a9791d09d9193" class="btn btn-primary">Contattaci Ora</a>
+            </div>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span>📧</span>
+                    <a href="/cdn-cgi/l/email-protection#61080f070e21121400111112151405080e4f020e0c"><span class="__cf_email__" data-cfemail="bad3d4dcd5fac9cfdbcacac9cecfded3d594d9d5d7">[email&#160;protected]</span></a>
+                </div>
+                <div class="contact-item">
+                    <span>💼</span>
+                    <a href="/cdn-cgi/l/email-protection#aeccdbddc7c0cbddddeedddbcfdededddadbcac7c180cdc1c3"><span class="__cf_email__" data-cfemail="a4c6d1d7cdcac1d7d7e4d7d1c5d4d4d7d0d1c0cdcb8ac7cbc9">[email&#160;protected]</span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="logo">SuappStudio</div>
+        <div class="social-links">
+            <a href="#" aria-label="LinkedIn">💼</a>
+            <a href="#" aria-label="Instagram">📷</a>
+            <a href="#" aria-label="Twitter">🐦</a>
+            <a href="#" aria-label="GitHub">💻</a>
+        </div>
+        <p>&copy; 2026 SuappStudio. Tutti i diritti riservati.</p>
+    </footer>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Hamburger menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll animation to service cards
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform =
