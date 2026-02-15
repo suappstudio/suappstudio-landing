@@ -124,7 +124,7 @@
             align-items: center;
             justify-content: center;
             position: relative;
-            padding: 2rem 5%;
+            padding: 8rem 5% 2rem;
             overflow: hidden;
         }
 
@@ -921,17 +921,17 @@
             <p>Hai un progetto in mente? Parliamone! Siamo pronti a trasformare la tua visione in realtà.</p>
             
             <div class="cta-buttons">
-                <a href="/cdn-cgi/l/email-protection#fe97909891be8d8b9f8e8e8d8a8b9a9791d09d9193" class="btn btn-primary">Contattaci Ora</a>
+                <a href="mailto:info@suappstudio.com" class="btn btn-primary">Contattaci Ora</a>
             </div>
             
             <div class="contact-info">
                 <div class="contact-item">
                     <span>📧</span>
-                    <a href="/cdn-cgi/l/email-protection#61080f070e21121400111112151405080e4f020e0c"><span class="__cf_email__" data-cfemail="bad3d4dcd5fac9cfdbcacac9cecfded3d594d9d5d7">[email&#160;protected]</span></a>
+                    <a href="mailto:info@suappstudio.com">info@suappstudio.com</a>
                 </div>
                 <div class="contact-item">
                     <span>💼</span>
-                    <a href="/cdn-cgi/l/email-protection#aeccdbddc7c0cbddddeedddbcfdededddadbcac7c180cdc1c3"><span class="__cf_email__" data-cfemail="a4c6d1d7cdcac1d7d7e4d7d1c5d4d4d7d0d1c0cdcb8ac7cbc9">[email&#160;protected]</span></a>
+                    <a href="mailto:business@suappstudio.com">business@suappstudio.com</a>
                 </div>
             </div>
         </div>
@@ -949,7 +949,7 @@
         <p>&copy; 2026 SuappStudio. Tutti i diritti riservati.</p>
     </footer>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script>
         // Hamburger menu toggle
         const hamburger = document.querySelector('.hamburger');
         const navLinks = document.querySelector('.nav-links');
@@ -992,4 +992,18 @@
                 if (entry.isIntersecting) {
                     setTimeout(() => {
                         entry.target.style.opacity = '1';
-                        entry.target.style.transform =
+                        entry.target.style.transform = 'translateY(0)';
+                    }, index * 100);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.service-card, .portfolio-item').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'all 0.6s ease-out';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
